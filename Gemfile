@@ -58,3 +58,9 @@ end
 
 # Use Pagy for pagination
 gem "pagy", "~> 5.5"
+
+# Custom installed gems since after Ruby 3.4.0 they are no longer included in the default bundle
+
+gem 'base64'
+gem 'bigdecimal'
+gem 'mutex_m'
