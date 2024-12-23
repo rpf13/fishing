@@ -156,128 +156,128 @@ FishCatch.create!([
     user: mike,
     bait: fat_rap,
     species: "Walleye",
-    weight: 3.0,
-    length: 18.0,
+    weight: 1.4,
+    length: 45.7,
     created_at: 3.days.ago
   },
   {
     user: mike,
     bait: fat_rap,
     species: "Brown Trout",
-    weight: 5.5,
-    length: 24.0,
+    weight: 2.5,
+    length: 61.0,
     created_at: 5.days.ago
   },
   {
     user: mike,
     bait: fat_rap,
     species: "Lake Trout",
-    weight: 3.5,
-    length: 19.0,
+    weight: 1.6,
+    length: 48.3,
     created_at: 7.days.ago
   },
   {
     user: mike,
     bait: fat_rap,
     species: "Rainbow Trout",
-    weight: 4.5,
-    length: 22.5,
+    weight: 2.0,
+    length: 57.2,
     created_at: 1.days.ago,
   },
   {
     user: mike,
     bait: yummy_gummy,
     species: "Largemouth Bass",
-    weight: 4.25,
-    length: 18.5,
+    weight: 1.9,
+    length: 47.0,
     created_at: 4.days.ago
   },
   {
     user: mike,
     bait: yummy_gummy,
     species: "Walleye",
-    weight: 5.5,
-    length: 21,
+    weight: 2.5,
+    length: 53.3,
     created_at: 3.days.ago
   },
   {
     user: mike,
     bait: strike_king,
     species: "Walleye",
-    weight: 4.0,
-    length: 21.0,
+    weight: 1.8,
+    length: 53.3,
     created_at: 2.days.ago
   },
   {
     user: mike,
     bait: strike_king,
     species: "Brown Trout",
-    weight: 5.25,
-    length: 22.5,
+    weight: 2.4,
+    length: 57.2,
     created_at: 3.days.ago
   },
   {
     user: mike,
     bait: strike_king,
     species: "Rainbow Trout",
-    weight: 3.5,
-    length: 18.5,
+    weight: 1.6,
+    length: 47.0,
     created_at: 4.days.ago
   },
   {
     user: mike,
     bait: purple_reign,
     species: "Bluegill",
-    weight: 1.5,
-    length: 8.5,
+    weight: 0.7,
+    length: 21.6,
     created_at: 4.days.ago
   },
   {
     user: nicole,
     bait: fire_tiger,
     species: "Brown Trout",
-    weight: 4.25,
-    length: 22.0,
+    weight: 1.9,
+    length: 55.9,
     created_at: 6.days.ago
   },
   {
     user: nicole,
     bait: fire_tiger,
     species: "Rainbow Trout",
-    weight: 3.5,
-    length: 19.0,
+    weight: 1.6,
+    length: 48.3,
     created_at: 5.days.ago
   },
   {
     user: nicole,
     bait: rooster_tail,
     species: "Largemouth Bass",
-    weight: 3.0,
-    length: 18.0,
+    weight: 1.4,
+    length: 45.7,
     created_at: 2.days.ago
   },
   {
     user: nicole,
     bait: krocodile,
     species: "Rainbow Trout",
-    weight: 2.5,
-    length: 16.5,
+    weight: 1.1,
+    length: 42.0,
     created_at: 3.days.ago
   },
   {
     user: nicole,
     bait: krocodile,
     species: "Walleye",
-    weight: 2.0,
-    length: 12.0,
+    weight: 0.9,
+    length: 30.5,
     created_at: 2.days.ago
   },
   {
     user: nicole,
     bait: bucktail,
     species: 'Smallmouth Bass',
-    weight: 3.25,
-    length: 14.0,
+    weight: 1.5,
+    length: 35.6,
     created_at: 8.days.ago
   }
 ])
@@ -307,8 +307,8 @@ names.each do |name|
         user: user,
         bait: bait,
         species: FishCatch::SPECIES.sample,
-        weight: rand(1..10),
-        length: rand(10..30),
+        weight: rand(0.5..5.0).round(1),
+        length: rand(20..70),
         created_at: rand(2..20).days.ago
       )
     end
