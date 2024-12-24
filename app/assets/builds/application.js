@@ -3754,7 +3754,7 @@
   function setFormMode(mode) {
     session.setFormMode(mode);
   }
-  var Turbo2 = /* @__PURE__ */ Object.freeze({
+  var Turbo = /* @__PURE__ */ Object.freeze({
     __proto__: null,
     navigator: navigator$1,
     session,
@@ -4389,7 +4389,7 @@
       element = element.parentElement;
     }
   })();
-  window.Turbo = Turbo2;
+  window.Turbo = Turbo;
   start();
 
   // node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable.js
@@ -6972,7 +6972,4 @@
 
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
-
-  // app/javascript/application.js
-  Turbo.session.drive = false;
 })();

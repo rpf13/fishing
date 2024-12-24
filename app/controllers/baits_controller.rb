@@ -2,6 +2,7 @@ class BaitsController < ApplicationController
 
   def index
     @baits = Bait.search(params)
+    # if no search string is added, this will return all baits
 
     @bait_categories = Bait.pluck(:category).uniq
 
