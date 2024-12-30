@@ -27,21 +27,35 @@ class TackleBoxItemsController < ApplicationController
     @bait = Bait.find(params[:bait_id])
     @item = current_user.tackle_box_items.create!(bait: @bait)
 
-    # redirect_to baits_url
-
     @bait.my_tackle_box_item = @item
+
+    # by default, Rails will render the create view, no need to explicitly mention it here.
+    # Nothing else is required in the create action, since we are using Turbo Streams.
+
+    # as an alternative, if we need to support the option of a browser without Turbo / JS, we can use the following code:
+    # it would always use the turbo_stream format, but if the request is not a Turbo request, it would redirect to the baits_url and cause a full page reload.
+    # for both of them, the create view would be rendered, by default.
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to baits_url }
+    end
   end
 
   def destroy
     @item = current_user.tackle_box_items.find(params[:id])
     @item.destroy
 
-    # redirect_to baits_url
-
     @bait = @item.bait
 
+    # since we also want to render the baits view (the create action), we need to render it explicitly. Otherwise, Rails would try to render the destroy view.
     render :create
-    # since we also want to render the baits view (the create action), we need to render it explicitly
+
+    # as an alternative, if we need to support the option of a browser without Turbo / JS, we can use the following code:
+    
+    # respond_to do |format|
+    #   format.turbo_stream { render :create}
+    #   format.html { redirect_to baits_url}
+    # end
   end
 
 end
