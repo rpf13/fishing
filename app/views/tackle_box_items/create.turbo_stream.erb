@@ -1,0 +1,4 @@
+<%= turbo_stream.replace dom_id(@bait), @bait %>
+
+<%# we target the id "tackle_box_....", which is used in the _header.html.erb to display the items count %>
+<%= turbo_stream.update "tackle_box_items_count", current_user.tackle_box_items.size %>
