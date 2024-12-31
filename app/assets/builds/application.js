@@ -1,13 +1,36 @@
 (() => {
+  var __create = Object.create;
   var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __esm = (fn, res) => function __init() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  };
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
 
   // node_modules/@rails/actioncable/src/adapters.js
   var adapters_default;
@@ -592,6 +615,60 @@
       init_subscription_guarantor();
       init_adapters();
       init_logger();
+    }
+  });
+
+  // node_modules/debounce/index.js
+  var require_debounce = __commonJS({
+    "node_modules/debounce/index.js"(exports, module) {
+      function debounce2(func, wait, immediate) {
+        var timeout, args, context, timestamp, result;
+        if (null == wait)
+          wait = 100;
+        function later() {
+          var last = Date.now() - timestamp;
+          if (last < wait && last >= 0) {
+            timeout = setTimeout(later, wait - last);
+          } else {
+            timeout = null;
+            if (!immediate) {
+              result = func.apply(context, args);
+              context = args = null;
+            }
+          }
+        }
+        ;
+        var debounced = function() {
+          context = this;
+          args = arguments;
+          timestamp = Date.now();
+          var callNow = immediate && !timeout;
+          if (!timeout)
+            timeout = setTimeout(later, wait);
+          if (callNow) {
+            result = func.apply(context, args);
+            context = args = null;
+          }
+          return result;
+        };
+        debounced.clear = function() {
+          if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+          }
+        };
+        debounced.flush = function() {
+          if (timeout) {
+            result = func.apply(context, args);
+            context = args = null;
+            clearTimeout(timeout);
+            timeout = null;
+          }
+        };
+        return debounced;
+      }
+      debounce2.debounce = debounce2;
+      module.exports = debounce2;
     }
   });
 
@@ -6963,6 +7040,18 @@
   application.debug = false;
   window.Stimulus = application;
 
+  // app/javascript/controllers/form_controller.js
+  var import_debounce = __toESM(require_debounce());
+  var form_controller_default = class extends Controller {
+    initialize() {
+      console.log("initialized");
+      this.submit = (0, import_debounce.default)(this.submit.bind(this), 300);
+    }
+    submit() {
+      this.element.requestSubmit();
+    }
+  };
+
   // app/javascript/controllers/hello_controller.js
   var hello_controller_default = class extends Controller {
     connect() {
@@ -6971,5 +7060,6 @@
   };
 
   // app/javascript/controllers/index.js
+  application.register("form", form_controller_default);
   application.register("hello", hello_controller_default);
 })();
