@@ -3,3 +3,6 @@
 <% end %>
 
 <%= turbo_stream.replace @fish_catch, @fish_catch %>
+
+<%# this will render the helper method from /helpers/application_helper %>
+<%= render_flash_stream %>

@@ -7040,6 +7040,16 @@
   application.debug = false;
   window.Stimulus = application;
 
+  // app/javascript/controllers/flash_controller.js
+  var flash_controller_default = class extends Controller {
+    connect() {
+      this.element.style.animation = "fade-in-and-out 4s";
+      setTimeout(() => {
+        this.element.remove();
+      }, 4e3);
+    }
+  };
+
   // app/javascript/controllers/form_controller.js
   var import_debounce = __toESM(require_debounce());
   var form_controller_default = class extends Controller {
@@ -7060,6 +7070,7 @@
   };
 
   // app/javascript/controllers/index.js
+  application.register("flash", flash_controller_default);
   application.register("form", form_controller_default);
   application.register("hello", hello_controller_default);
 })();
