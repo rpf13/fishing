@@ -10,7 +10,9 @@ module FishCatchesHelper
     params = request.params.
       merge(sort: column, direction: next_direction(column))
 
-    link_to name, params
+    # the data attribute is used to add the url attributes to the link in order to make it work with Turbo
+    # and to have the possibliity to use bookmark a the filtered view.
+    link_to name, params, data: { turbo_action: "advance" }
   end
 
   def next_direction(column)

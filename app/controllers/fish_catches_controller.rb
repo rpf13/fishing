@@ -3,9 +3,11 @@ class FishCatchesController < ApplicationController
   before_action :set_fish_catch, only: %i[show edit update destroy]
 
   def index
+    # the link_extra option is used to add the url attributes to the link in order to make it work with Turbo
     @pagy, @fish_catches =
       pagy(current_user.filter_catches(params),
-           items: params[:per_page] ||= 5)
+           items: params[:per_page] ||= 5,
+           link_extra: 'data-turbo-action="advance"')
 
     @bait_names = Bait.pluck(:name)
     @species = FishCatch::SPECIES

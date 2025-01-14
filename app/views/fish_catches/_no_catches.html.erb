@@ -2,7 +2,16 @@
   <h2>
     Sorry, no catches yet. 😕
   </h2>
+<%
+=begin
+  As we saw in the video, the index.html.erb template renders the _no_catches.html.erb partial if
+  there are no fish catches. And that partial is rendered within a Turbo Frame. So when
+  the "Log a catch!" link is clicked, Turbo expects the response to have a matching Turbo Frame.
+  But the link runs the index action of the TackleBoxItemsController, and the correponding index.html.erb
+  template doesn't render a matching Turbo Frame. So you need to change the link so that it breaks out of the frame.
+=end
+%>
   <p>
-    <%= link_to "Log a catch!", tackle_box_items_path %>
+    <%= link_to "Log a catch!", tackle_box_items_path, data: { turbo_frame: "_top" } %>
   </p>
 </div>
