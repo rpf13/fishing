@@ -7069,8 +7069,21 @@
     }
   };
 
+  // app/javascript/controllers/sort_link_controller.js
+  var sort_link_controller_default = class extends Controller {
+    // static stimulus target attributes, whcih are used to reference elements in the DOM
+    // they are actually used in the fish_cathces/index.html.erb file in the form_with block hidden attributes
+    static targets = ["sort", "direction"];
+    updateForm(event) {
+      let searchParams = new URL(event.detail.url).searchParams;
+      this.sortTarget.value = searchParams.get("sort");
+      this.directionTarget.value = searchParams.get("direction");
+    }
+  };
+
   // app/javascript/controllers/index.js
   application.register("flash", flash_controller_default);
   application.register("form", form_controller_default);
   application.register("hello", hello_controller_default);
+  application.register("sort-link", sort_link_controller_default);
 })();
