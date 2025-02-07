@@ -7069,6 +7069,14 @@
     }
   };
 
+  // app/javascript/controllers/range_slider_controller.js
+  var range_slider_controller_default = class extends Controller {
+    static targets = ["slider"];
+    connect() {
+      this.sliderTarget.innerHTML = "Put a slider here";
+    }
+  };
+
   // app/javascript/controllers/sort_link_controller.js
   var sort_link_controller_default = class extends Controller {
     // static stimulus target attributes, whcih are used to reference elements in the DOM
@@ -7085,5 +7093,6 @@
   application.register("flash", flash_controller_default);
   application.register("form", form_controller_default);
   application.register("hello", hello_controller_default);
+  application.register("range-slider", range_slider_controller_default);
   application.register("sort-link", sort_link_controller_default);
 })();
