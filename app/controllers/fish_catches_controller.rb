@@ -11,6 +11,12 @@ class FishCatchesController < ApplicationController
 
     @bait_names = Bait.pluck(:name)
     @species = FishCatch::SPECIES
+
+    # weight range for the weight slider, however the min_catch_weight and max_catch_weight methods are defined with
+    # .round and .floor methods respectively, so the range is adjusted to be more user-friendly but since I have converted
+    # to metric system, the floor will cause it to be 0 value.
+    @min_weight = current_user.min_catch_weight
+    @max_weight = current_user.max_catch_weight
   end
 
   def show
