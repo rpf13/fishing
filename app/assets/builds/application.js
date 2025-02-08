@@ -9157,6 +9157,10 @@
     static targets = ["slider", "currentMin", "currentMax"];
     static values = { min: Number, max: Number };
     connect() {
+      const existingSlider = this.sliderTarget.firstElementChild;
+      if (existingSlider) {
+        existingSlider.remove();
+      }
       this.slider = nouislider_default.create(this.sliderTarget, {
         range: {
           "min": this.minValue,
